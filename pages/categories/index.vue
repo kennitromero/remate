@@ -2,15 +2,14 @@
   <div class="row justify-content-center">
     <div class="col-5">
       <div class="list-group mb-3">
-        <nuxt-link v-for="c in categories" v-bind:key="c" :to="'categories/' + c" class="list-group-item list-group-item-action"
+        <nuxt-link v-for="c in categories" v-bind:key="c"
+                   :to="'categories/' + c"
+                   class="list-group-item list-group-item-action text-capitalize"
                    aria-current="true">
           {{ removeHyphen(c) }}
         </nuxt-link>
       </div>
     </div>
-
-    <h1 v-if="false">Hola Mundo</h1>
-
   </div>
 </template>
 

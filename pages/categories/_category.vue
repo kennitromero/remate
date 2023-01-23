@@ -15,7 +15,7 @@
     </nav>
 
     <div class="row justify-content-center mb-3">
-      <div class="col-4 m-3" v-for="p in products">
+      <div class="col-sm-6 col-md-6 col-lg-4 m-3" v-for="p in products">
         <product :product="p"/>
       </div>
     </div>

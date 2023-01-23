@@ -78,7 +78,6 @@ export default {
 
       this.validUsername()
 
-      // validar campos, si alguna validación retorna false, no se realiza el registro
       if (this.ui.validation.hasError) {
         return
       }

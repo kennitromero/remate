@@ -23,36 +23,20 @@
       Agregar
     </button>
 
-    <div v-else class="input-group">
-      <div class="input-group-prepend">
-        <button class="btn btn-outline-danger"
-                type="button"
-                style="padding: 0 20px"
-                v-on:click="reduceQuantity"
-        >
-          -
-        </button>
-      </div>
-      <input type="text" class="form-control text-center" readonly :value="cartProduct.quantity">
-      <div class="input-group-append">
-        <button class="btn btn-outline-primary"
-                type="button"
-                style="padding: 0 20px"
-                v-on:click="addQuantity"
-        >
-          +
-        </button>
-      </div>
-    </div>
+    <product-add-remove :product="product"/>
   </div>
 </template>
 
 <script>
+import ProductAddRemove from '~/components/product-add-remove.vue'
 import {mapMutations, mapGetters} from "vuex";
 
 export default {
   props: {
     product: Object
+  },
+  components: {
+    ProductAddRemove
   },
   computed: {
     cartProduct() {
@@ -60,25 +44,13 @@ export default {
     }
   },
   methods: {
-    ...mapMutations(['addInitProduct', 'addQuantityToProduct', 'reduceQuantityToProduct', 'deleteProduct']),
+    ...mapMutations(['addInitProduct']),
     ...mapGetters(['getCart']),
     addProduct(product) {
       this.addInitProduct(product)
     },
     isProductInTheCart(productId) {
       return this.getCart().some(c => c.id === productId)
-    },
-    addQuantity() {
-      console.log(this.product.id)
-      this.addQuantityToProduct(this.product.id)
-    },
-    reduceQuantity() {
-      if (this.cartProduct.quantity === 1) {
-        this.deleteProduct(this.product.id)
-        return
-      }
-
-      this.reduceQuantityToProduct(this.product.id)
     }
   }
 }

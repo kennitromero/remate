@@ -19,7 +19,7 @@
           <li class="nav-item">
             <nuxt-link to="/cart" class="nav-link">
               Carrito
-              <b-badge pill variant="primary">{{  totalQuantity }}</b-badge>
+              <b-badge pill variant="primary">{{  getCartTotalQuantity() }}</b-badge>
             </nuxt-link>
           </li>
           <li class="nav-item">
@@ -41,19 +41,11 @@
 
 <script>
 import {mapMutations, mapGetters} from 'vuex'
+
 export default {
-  computed: {
-    totalQuantity() {
-      let total = 0
-
-      this.getCart().forEach(c => total += c.quantity)
-
-      return total
-    }
-  },
   methods: {
     ...mapMutations(['setDefaultUser']),
-    ...mapGetters(['getCart']),
+    ...mapGetters(['getCartTotalQuantity']),
     logout() {
       this.setDefaultUser()
       this.$router.push('/login')
